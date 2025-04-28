@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { signInWithGoogle } from "@/lib/supabase";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { Google } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const AuthForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +40,7 @@ const AuthForm = () => {
           onClick={handleGoogleSignIn}
           disabled={isLoading}
         >
-          <Google className="mr-2 h-4 w-4" />
+          <Mail className="mr-2 h-4 w-4" />
           {isLoading ? "Signing in..." : "Sign in with Google"}
         </Button>
       </CardContent>
