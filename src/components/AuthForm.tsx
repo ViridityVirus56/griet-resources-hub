@@ -44,6 +44,9 @@ const AuthForm = () => {
           {isLoading ? "Signing in..." : "Sign in with Google"}
         </Button>
       </CardContent>
+      <CardFooter className="text-xs text-center text-gray-500 flex justify-center">
+        <p>You'll need to configure Supabase credentials to enable authentication</p>
+      </CardFooter>
     </Card>
   );
 };
