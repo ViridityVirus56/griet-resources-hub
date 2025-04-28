@@ -1,24 +1,17 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-// Replace these with your actual Supabase URL and anonymous key
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://your-project-url.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-anon-key';
+// Use the Supabase URL and anonymous key from your connected project
+const supabaseUrl = 'https://qaamibpwyzqcixgxmfzy.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFhYW1pYnB3eXpxY2l4Z3htZnp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU4NDgwMTQsImV4cCI6MjA2MTQyNDAxNH0.oComJn5zKiPN7jNAdq0AjqyqlrdERnFm5s2WjUl-SSw';
 
-// Check if we're using placeholder values and provide a helpful message
-const isUsingPlaceholders = 
-  supabaseUrl.includes('your-project') || 
-  supabaseAnonKey.includes('your-anon-key');
-
-// Create a client only if we have valid credentials
-export const supabase = isUsingPlaceholders 
-  ? null 
-  : createClient(supabaseUrl, supabaseAnonKey);
+// Create a client with the proper credentials
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Helper function to check if Supabase is properly configured
 const checkSupabaseConfig = () => {
-  if (isUsingPlaceholders) {
-    console.error('Supabase is not configured. Please add your Supabase URL and anon key to the environment variables.');
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.error('Supabase is not configured. Please add your Supabase URL and anon key.');
     return false;
   }
   return true;

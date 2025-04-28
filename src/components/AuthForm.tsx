@@ -14,6 +14,10 @@ const AuthForm = () => {
     try {
       setIsLoading(true);
       await signInWithGoogle();
+      toast({
+        title: "Authentication Initiated",
+        description: "Please complete the sign-in process in the popup window.",
+      });
     } catch (error: any) {
       toast({
         variant: "destructive",
@@ -45,7 +49,7 @@ const AuthForm = () => {
         </Button>
       </CardContent>
       <CardFooter className="text-xs text-center text-gray-500 flex justify-center">
-        <p>You'll need to configure Supabase credentials to enable authentication</p>
+        <p>Sign in using your GRIET college email</p>
       </CardFooter>
     </Card>
   );
