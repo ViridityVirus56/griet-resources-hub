@@ -1,3 +1,4 @@
+
 import { createClient } from '@supabase/supabase-js';
 
 // Use the Supabase URL and anonymous key from your connected project
@@ -27,19 +28,32 @@ export const signInWithGoogle = async () => {
     throw new Error('Supabase is not configured properly. Please add your Supabase credentials.');
   }
 
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: window.location.origin,
-      queryParams: {
-        access_type: 'offline',
-        prompt: 'consent'
+  console.log('Attempting to sign in with Google...');
+  console.log('Redirect URL:', window.location.origin);
+  
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: window.location.origin,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent'
+        }
       }
-    }
-  });
+    });
 
-  if (error) throw error;
-  return data;
+    if (error) {
+      console.error('Sign-in error details:', error);
+      throw error;
+    }
+    
+    console.log('Sign-in successful, data:', data);
+    return data;
+  } catch (error) {
+    console.error('Caught error during sign-in:', error);
+    throw error;
+  }
 };
 
 export const signOut = async () => {

@@ -23,7 +23,8 @@ const AuthForm = () => {
       toast({
         variant: "destructive",
         title: "Authentication Failed",
-        description: error.message || "Failed to sign in with Google. Please try again.",
+        description: error?.message || error?.error_description || 
+          "Failed to sign in with Google. Please make sure Google authentication is enabled in Supabase.",
       });
     } finally {
       setIsLoading(false);
