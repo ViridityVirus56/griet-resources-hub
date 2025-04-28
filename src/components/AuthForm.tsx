@@ -19,10 +19,11 @@ const AuthForm = () => {
         description: "Please complete the sign-in process in the popup window.",
       });
     } catch (error: any) {
+      console.error('Sign-in error:', error);
       toast({
         variant: "destructive",
         title: "Authentication Failed",
-        description: error.message || "Please use your GRIET college email (@grietcollege.com)",
+        description: error.message || "Failed to sign in with Google. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -34,7 +35,7 @@ const AuthForm = () => {
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-center">GRIET Resources Hub</CardTitle>
         <CardDescription className="text-center">
-          Sign in with your college Google account
+          Sign in with your Google account
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -49,7 +50,7 @@ const AuthForm = () => {
         </Button>
       </CardContent>
       <CardFooter className="text-xs text-center text-gray-500 flex justify-center">
-        <p>Sign in using your GRIET college email</p>
+        <p>Sign in using your Google account</p>
       </CardFooter>
     </Card>
   );
