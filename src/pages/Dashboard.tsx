@@ -17,15 +17,6 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check if user is authenticated
-    const storedUser = sessionStorage.getItem("user");
-    if (!storedUser) {
-      navigate("/");
-      return;
-    }
-    setUser(JSON.parse(storedUser));
-  }, [navigate]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("user");
@@ -57,10 +48,6 @@ const Dashboard = () => {
     subject.code.toLowerCase().includes(searchQuery.toLowerCase())
   ) : [];
 
-  if (!user) {
-    return null; // Will redirect in useEffect
-  }
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -69,12 +56,6 @@ const Dashboard = () => {
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-primary">GRIET Resources Hub</h1>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600 hidden md:inline-block">
-                Logged in as: {user.email}
-              </span>
-              <Button variant="outline" size="sm" onClick={handleLogout}>
-                <LogOut size={16} className="mr-2" /> Logout
-              </Button>
             </div>
           </div>
         </div>
